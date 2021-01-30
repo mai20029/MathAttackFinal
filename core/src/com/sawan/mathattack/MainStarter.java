@@ -32,7 +32,10 @@ import com.sawan.mathattack.asset.HeroAssests;
 import com.sawan.mathattack.asset.UIAssets;
 import com.sawan.mathattack.asset.levels.MALevelAssets;
 import com.sawan.mathattack.game.AbstractGame;
-import com.sawan.mathattack.game.screen.MAGameScreen;
+import com.sawan.mathattack.game_screens.credits.MACreditsScreen;
+import com.sawan.mathattack.managers.FileManager;
+import com.sawan.mathattack.managers.FileManager.FileType;
+import com.sawan.mathattack.managers.SettingsManager;
 import com.sawan.mathattack.settings.AppSettings;
 
 public class MainStarter extends AbstractGame {
@@ -40,12 +43,19 @@ public class MainStarter extends AbstractGame {
 	@Override
 	public void create() {
         super.create();
-		setScreen(new MAGameScreen(this, "Main Menu", 1));
+		setScreen(new MACreditsScreen(this, "Main Menu"));
 	}
 	
 	@Override
 	public void setUpAppSettings() {
 		AppSettings.setUp();
+		if (!SettingsManager.isFirstLaunchDone()) {
+			SettingsManager.setFirstLaunchDone(true);
+			FileManager.createTextFileInLocalStorage("profile.data");
+			FileManager.initiateMAFile("profile.data", FileType.LOCAL_FILE);
+		}
+		//FileManager.getFile("profile.data", FileType.LOCAL_FILE).delete();
+		//SettingsManager.setFirstLaunchDone(false);
 	}
 
 	@Override

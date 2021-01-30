@@ -36,10 +36,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.sawan.mathattack.asset.Backgrounds;
 import com.sawan.mathattack.asset.UIAssets;
 import com.sawan.mathattack.buttons.ButtonLevel;
+import com.sawan.mathattack.buttons.MathAttackButton;
 import com.sawan.mathattack.game.AbstractGame;
 import com.sawan.mathattack.game.screen.MAGameScreen;
 import com.sawan.mathattack.game_screens.main.MAMainMenuScreen;
 import com.sawan.mathattack.interfaces.IScreen;
+import com.sawan.mathattack.managers.FileManager;
+import com.sawan.mathattack.managers.FileManager.FileType;
 import com.sawan.mathattack.scene2d.ui.MenuCreator;
 import com.sawan.mathattack.screen.AbstractScreen;
 import com.sawan.mathattack.settings.AppSettings;
@@ -51,6 +54,8 @@ import com.sawan.mathattack.settings.AppSettings;
 public class MALevelScreen extends AbstractScreen implements IScreen {
 	private Label lblFps;
 	private Label lblScreenTime;
+	
+	
 	//
 	Table level_table;
 	
@@ -126,7 +131,7 @@ public class MALevelScreen extends AbstractScreen implements IScreen {
 			//4. Set stars or any other achievements (get from database or text files here)
 			// I just made a random number of earned stars 
 			//Random rnd = new Random();
-			levelButton.setLevelStars(UIAssets.image_level_no_star, UIAssets.image_level_star, 3, 0);
+			levelButton.setLevelStars(UIAssets.image_level_no_star, UIAssets.image_level_star, 3, Integer.parseInt(FileManager.readLine("profile.data", i, FileType.LOCAL_FILE)));
 			
 			//5. Add  listener
 			//Add button listener to go to a level (gamascreen)
@@ -134,7 +139,6 @@ public class MALevelScreen extends AbstractScreen implements IScreen {
 			@Override
 				public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 					super.touchUp(event, x, y, pointer, button);
-					System.out.println(levelButton.getLevelNumber());
 					getGame().setScreen(new MAGameScreen(getGame(), "Game Screen", levelButton.getLevelNumber()));
 				}
 			});
@@ -149,6 +153,20 @@ public class MALevelScreen extends AbstractScreen implements IScreen {
 			
 			
 		}
+		
+		MathAttackButton home = new MathAttackButton(63f, 66f, null, true);
+		home.setTextureRegion(UIAssets.image_home_icon, true);
+		
+		home.addListener(new ActorGestureListener() {
+			@Override
+				public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+					super.touchUp(event, x, y, pointer, button);
+					getGame().setScreen(new MAMainMenuScreen(getGame(), "Main Menu"));
+				}
+			});
+		
+		level_table.row();
+		level_table.add(home).padTop(-50f * AppSettings.getWorldPositionYRatio()).padBottom(-70f * AppSettings.getWorldPositionYRatio()).colspan(4);
 		level_table.setBackground(background);
 	}
 	
