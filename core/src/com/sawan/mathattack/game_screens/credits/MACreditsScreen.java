@@ -34,6 +34,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.sawan.mathattack.asset.Backgrounds;
 import com.sawan.mathattack.asset.UIAssets;
 import com.sawan.mathattack.buttons.MathAttackButton;
+import com.sawan.mathattack.constants.MAConstants;
 import com.sawan.mathattack.game.AbstractGame;
 import com.sawan.mathattack.game_screens.main.MAMainMenuScreen;
 import com.sawan.mathattack.interfaces.IScreen;
@@ -42,18 +43,28 @@ import com.sawan.mathattack.scene2d.ui.Text;
 import com.sawan.mathattack.screen.AbstractScreen;
 import com.sawan.mathattack.settings.AppSettings;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author Sawan J. Kapai Harpalani
+ * The Class MACreditsScreen.
  *
+ * @author Sawan J. Kapai Harpalani
  */
 public class MACreditsScreen extends AbstractScreen implements IScreen {
 
+	/** The credits. */
 	Table credits;
 	
+	/** The Constant TEXT_WIDTH. */
+	protected final static float TEXT_WIDTH = 270f;
+	
+	/** The Constant TEXT_HEIGHT. */
+	protected final static float TEXT_HEIGHT = 90f;
 	
 	/**
-	 * @param game
-	 * @param screenName
+	 * Instantiates a new MA credits screen.
+	 *
+	 * @param game the game
+	 * @param screenName the screen name
 	 */
 	public MACreditsScreen(AbstractGame game, String screenName) {
 		super(game, screenName);
@@ -61,6 +72,9 @@ public class MACreditsScreen extends AbstractScreen implements IScreen {
 		setUpcredits();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.sawan.mathattack.interfaces.IScreen#setUpScreenElements()
+	 */
 	@Override
 	public void setUpScreenElements() {
 		// TODO Auto-generated method stub
@@ -69,26 +83,32 @@ public class MACreditsScreen extends AbstractScreen implements IScreen {
 		setBackButtonActive(true);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.sawan.mathattack.interfaces.IScreen#setUpMenu()
+	 */
 	@Override
 	public void setUpMenu() {
 		// TODO Auto-generated method stub
 		
 	}
 	
+	/**
+	 * Sets the upcredits.
+	 */
 	public void setUpcredits() {
 		credits = MenuCreator.createTable(false, UIAssets.getSkin());
-		credits.setSize(782f * AppSettings.getWorldSizeRatio(), 502f * AppSettings.getWorldSizeRatio());
+		credits.setSize(MAConstants.CREDITS_WIDTH * AppSettings.getWorldSizeRatio(), MAConstants.CREDITS_HEIGHT * AppSettings.getWorldSizeRatio());
 	    credits.setPosition((getStage().getWidth() / 2) - (credits.getWidth() / 2), -credits.getHeight());
-	    //level_table.align(Align.center);
+	    //credits.debug();
 	    credits.addAction(Actions.moveTo((getStage().getWidth() / 2) - (credits.getWidth() / 2), (getStage().getHeight() / 2) - (credits.getHeight() / 2), 2.5f));
 		//level_table.top().left().pad(30, 30, 30, 30);
 		Drawable background = new TextureRegionDrawable(UIAssets.image_empty_bg);
 		credits.setBackground(background);
 		
-		Text credits_text = new Text(UIAssets.cartwheel_font, 90f * 3, 20f, true);
+		Text credits_text = new Text(UIAssets.cartwheel_font, TEXT_WIDTH, TEXT_HEIGHT, true);
 		credits_text.setText("Game made by:");
 		
-		Text credits_text_name = new Text(UIAssets.cartwheel_font, 90f * 3, 20f, true);
+		Text credits_text_name = new Text(UIAssets.cartwheel_font, TEXT_WIDTH, TEXT_HEIGHT, true);
 		credits_text_name.setText("Sawan J. Kapai Harpalani");
 		
 		
@@ -96,7 +116,7 @@ public class MACreditsScreen extends AbstractScreen implements IScreen {
 		credits.row();
 		credits.add(credits_text_name).padBottom(50f * AppSettings.getWorldPositionYRatio()).padRight(400f * AppSettings.getWorldPositionXRatio());
 		
-		MathAttackButton home = new MathAttackButton(63f, 66f, null, true);
+		MathAttackButton home = new MathAttackButton(MAConstants.SMALL_BUTTON_WIDTH, MAConstants.SMALL_BUTTON_HEIGHT, null, true);
 		home.setTextureRegion(UIAssets.image_home_icon, true);
 		
 		home.addListener(new ActorGestureListener() {
@@ -113,6 +133,9 @@ public class MACreditsScreen extends AbstractScreen implements IScreen {
 		getStage().addActor(credits);
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.sawan.mathattack.screen.AbstractScreen#keyBackPressed()
+	 */
 	@Override
 	public void keyBackPressed() {
 		super.keyBackPressed();

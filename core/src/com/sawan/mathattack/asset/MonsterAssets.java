@@ -33,13 +33,15 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.sawan.mathattack.animation.AnimationCreator;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author Sawan
+ * The Class MonsterAssets.
  *
+ * @author Sawan
  */
-public class BlueMonsterAssets {
+public class MonsterAssets {
 	/** The Constant FILE_IMAGE_ATLAS. */
-	private final static String FILE_IMAGE_ATLAS = "data/ma/game/characters/blue_monster.atlas";
+	private static String FILE_IMAGE_ATLAS = "data/ma/game/characters/monster1.atlas";
 	
 	/** The Constant FILE_UI_SKIN. */
 	private final static String FILE_UI_SKIN = "skin/uiskin.json";
@@ -133,4 +135,14 @@ public class BlueMonsterAssets {
 	public static void loadSoundsAndMusics() {
 	
 	}
+	
+	/**
+	 * Sets the file image atlas.
+	 *
+	 * @param level the new file image atlas
+	 */
+	public static void setFILE_IMAGE_ATLAS(int level) {
+		FILE_IMAGE_ATLAS = "data/ma/game/characters/monster" + Integer.toString(level) + ".atlas";
+	}
+	
 }

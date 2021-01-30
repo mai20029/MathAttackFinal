@@ -31,7 +31,7 @@ import java.util.Random;
 
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
-import com.sawan.mathattack.asset.BlueMonsterAssets;
+import com.sawan.mathattack.asset.MonsterAssets;
 import com.sawan.mathattack.asset.GameAssets;
 import com.sawan.mathattack.asset.HeroAssests;
 import com.sawan.mathattack.collision.CollisionDetector;
@@ -39,33 +39,64 @@ import com.sawan.mathattack.game.GameState;
 import com.sawan.mathattack.game.managers.MAGameManager;
 import com.sawan.mathattack.models.ammunition.Bullet;
 import com.sawan.mathattack.models.characters.Hero;
-import com.sawan.mathattack.models.characters.enemies.BlueMonster;
+import com.sawan.mathattack.models.characters.enemies.MAMonster;
 import com.sawan.mathattack.scene2d.AbstractWorldScene2d;
 import com.sawan.mathattack.settings.AppSettings;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author Sawan
+ * The Class WorldLayerActors.
  *
+ * @author Sawan
  */
 public class WorldLayerActors extends AbstractWorldScene2d {
 	
+	/** The game manager. */
 	private MAGameManager gameManager;
+	
+	/** The hero. */
 	public Hero hero;
-	public ArrayList<BlueMonster> enemies;
+	
+	/** The enemies. */
+	public ArrayList<MAMonster> enemies;
+	
+	/** The bullets. */
 	public ArrayList<Bullet> bullets;
 	
-	protected final static int NUM_ENEMIES = 2;
+	/** The Constant NUM_ENEMIES. */
+	protected final static int NUM_ENEMIES = 15;
 	
+	/** The Constant SPEED. */
+	protected final static int SPEED = 80;
+	
+	/** The Constant BULLET_SIZE. */
+	protected final static float BULLET_SIZE = 60f;
+	
+	/** The level. */
 	public int level;
 	
+	/**
+	 * Instantiates a new world layer actors.
+	 *
+	 * @param gameManager the game manager
+	 * @param posX the pos x
+	 * @param posY the pos y
+	 * @param worldWidth the world width
+	 * @param worldHeight the world height
+	 * @param level the level
+	 */
 	public WorldLayerActors(MAGameManager gameManager, float posX, float posY, float worldWidth, float worldHeight, int level) {
 		super(posX, posY, worldWidth, worldHeight);
 		this.gameManager =  gameManager;
+		this.level = level;
 		setUpHero();
 		setUpEnemies();
-		this.level = level;
+		
 	}
 	
+	/**
+	 * Sets the up hero.
+	 */
 	public void setUpHero() {
 		hero = new Hero(gameManager.worldLayer_background.SOIL_WIDHT, gameManager.worldLayer_background.SOIL_HEIGHT, true);
 		bullets = new ArrayList<Bullet>();
@@ -77,21 +108,27 @@ public class WorldLayerActors extends AbstractWorldScene2d {
 		addActor(hero);
 	}
 	
+	/**
+	 * Sets the up enemies.
+	 */
 	public void setUpEnemies() {
-		enemies = new ArrayList<BlueMonster>();
+		enemies = new ArrayList<MAMonster>();
 		Random rnd = new Random();
 		
+		MonsterAssets.setFILE_IMAGE_ATLAS(level);
+		MonsterAssets.loadAll();
+		
 		for (int i = 0; i < NUM_ENEMIES; i++) {
-			BlueMonster current_monster = new BlueMonster(gameManager.worldLayer_background.SOIL_WIDHT, gameManager.worldLayer_background.SOIL_HEIGHT, true);
+			MAMonster current_monster = new MAMonster(gameManager.worldLayer_background.SOIL_WIDHT, gameManager.worldLayer_background.SOIL_HEIGHT, true);
 			
 			float posY = gameManager.worldLayer_background.SOIL_HEIGHT * AppSettings.getWorldSizeRatio();
 			current_monster.setY(posY);
 			current_monster.setX(gameManager.getStage().getWidth() + (i * (current_monster.getWidth() + 100)));
 			
-			current_monster.setAnimation(BlueMonsterAssets.monster_walking, true, true);
+			current_monster.setAnimation(MonsterAssets.monster_walking, true, true);
 			
-			float rndSpeed = rnd.nextInt(100) + 20;
-			current_monster.startMoving(gameManager.getStage().getWidth(), rndSpeed, true, false);
+			float rndSpeed = rnd.nextInt(SPEED) + 20;
+			current_monster.startMoving(gameManager.getStage().getWidth(), rndSpeed * AppSettings.getWorldPositionXRatio(), true, false);
 			
 			enemies.add(current_monster);
 			addActor(current_monster);
@@ -100,6 +137,9 @@ public class WorldLayerActors extends AbstractWorldScene2d {
 		}
 	}
 	
+	/**
+	 * Kill hero.
+	 */
 	public void killHero() {
 		
 			hero.setAnimationMomentary(HeroAssests.hero_faint, true, null, true, true);
@@ -112,6 +152,11 @@ public class WorldLayerActors extends AbstractWorldScene2d {
 	}
 
 	
+	/**
+	 * Checks if is hero alive.
+	 *
+	 * @return true, if is hero alive
+	 */
 	public boolean isHeroAlive() {
 		 if (hero.isAlive()) {
 			return true;
@@ -120,15 +165,24 @@ public class WorldLayerActors extends AbstractWorldScene2d {
 		}
 	}
 	
+	/**
+	 * Game win.
+	 */
 	public void gameWin() {
 		if (enemies.isEmpty() && hero.getLifes() > 0) {
 			gameManager.setGameState(GameState.GAME_LEVELWIN);
 		}
 	}
 	
-	public void checkCollision(Hero hero, ArrayList<BlueMonster> enemies) {
-		for (Iterator<BlueMonster> iterator = enemies.iterator(); iterator.hasNext();) {
-			BlueMonster enemy = (BlueMonster) iterator.next();
+	/**
+	 * Check collision.
+	 *
+	 * @param hero the hero
+	 * @param enemies the enemies
+	 */
+	public void checkCollision(Hero hero, ArrayList<MAMonster> enemies) {
+		for (Iterator<MAMonster> iterator = enemies.iterator(); iterator.hasNext();) {
+			MAMonster enemy = (MAMonster) iterator.next();
 			if (CollisionDetector.isActorsCollide(hero, enemy) && enemy.isAlive() && hero.getLifes() > 0) {
 			//	System.out.println(enemies.indexOf(enemy));
 				enemy.setAlive(false);
@@ -148,12 +202,18 @@ public class WorldLayerActors extends AbstractWorldScene2d {
 		}
 	}
 
-	public void hitEnemy(ArrayList<Bullet> bullets, ArrayList<BlueMonster> enemies) {
+	/**
+	 * Hit enemy.
+	 *
+	 * @param bullets the bullets
+	 * @param enemies the enemies
+	 */
+	public void hitEnemy(ArrayList<Bullet> bullets, ArrayList<MAMonster> enemies) {
 		for (Iterator<Bullet> iterator_bullets = bullets.iterator(); iterator_bullets.hasNext();) {
 			Bullet bullet = (Bullet) iterator_bullets.next();
 			
-			for (Iterator<BlueMonster> iterator_enemies = enemies.iterator(); iterator_enemies.hasNext();) {
-				BlueMonster blueMonster = (BlueMonster) iterator_enemies.next();
+			for (Iterator<MAMonster> iterator_enemies = enemies.iterator(); iterator_enemies.hasNext();) {
+				MAMonster blueMonster = (MAMonster) iterator_enemies.next();
 				
 				if (CollisionDetector.isActorsCollide(bullet, blueMonster)) {
 					iterator_bullets.remove();
@@ -169,15 +229,18 @@ public class WorldLayerActors extends AbstractWorldScene2d {
 		}
 	}
 	
+	/**
+	 * Adds the bullet.
+	 */
 	public void addBullet() {
-		final Bullet bullet = new Bullet(60f, 60f, true);
+		final Bullet bullet = new Bullet(BULLET_SIZE, BULLET_SIZE, true);
 		bullet.setX(hero.getX() + hero.getWidth());
-		bullet.setY((gameManager.worldLayer_background.SOIL_HEIGHT * AppSettings.getWorldPositionYRatio()) + (hero.getHeight() / 2) - bullet.getHeight());
+		bullet.setY((hero.getY()) + (bullet.getHeight() / 2));
 		bullet.setTextureRegion(GameAssets.loadRandomProjectile(), true);
 		
 		bullets.add(bullet);
 		
-		bullet.startMoving(gameManager.getStage().getWidth(), 125f * AppSettings.getWorldPositionXRatio(), true);
+		bullet.startMoving(gameManager.getStage().getWidth(), 150f * AppSettings.getWorldPositionXRatio(), true);
 		
 		addActor(bullet);
 	}
