@@ -61,13 +61,17 @@ public class MALevelTable {
 	 *
 	 * @param levelScreen the level screen
 	 */
-	@SuppressWarnings("unused")
 	public void levelTable(final MALevelScreen levelScreen) {
 		levelScreen.level_table = MenuCreator.createTable(true, UIAssets.getSkin());
 		levelScreen.level_table.setPosition(-999, 0);
+		levelScreen.level_table.size(50,50);
+		levelScreen.level_table.debug();
 		levelScreen.level_table.addAction(Actions.moveTo(0, 0, 0.7f));
-		levelScreen.level_table.top().left().pad(PADDING_VALUE, PADDING_VALUE, PADDING_VALUE, PADDING_VALUE);
+		//levelScreen.level_table.top().left().pad(PADDING_VALUE, PADDING_VALUE, PADDING_VALUE, PADDING_VALUE);
+		Drawable background_table = new TextureRegionDrawable(UIAssets.image_level_table);
+		levelScreen.level_table.setBackground(background_table);
 		levelScreen.getStage().addActor(levelScreen.level_table);
+		
 		
 		for (int level_number = 0; level_number < NUM_LEVELS; level_number++) {
 			// Create the button
@@ -97,7 +101,7 @@ public class MALevelTable {
 			}
 			
 			// Add to table
-			levelScreen.level_table.add(button_level).size(50, 50).pad(5, 5, 5, 5).expand();
+			levelScreen.level_table.add(button_level).size(100, 100).pad(5, 5, 5, 5).expand();
 		}
 		
 	}

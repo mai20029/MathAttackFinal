@@ -1,11 +1,11 @@
 /**
- * File name:	Assets.java
+ * File name:	Hero.java
  * Version:		1.0
- * Date:		01/03/2015 19:33:18
+ * Date:		20/03/2015 20:05:03
  * Author:		Sawan
  * Copyright:	Copyright 200X Sawan
  *
- *				This file is part of Foobar.
+ *				This file is part of Math Attack.
  *
  *				Math Attack is free software: you can redistribute it 
  *				and/or modify it under the terms of the GNU General
@@ -28,30 +28,24 @@ package com.sawan.mathattack.asset;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.sawan.mathattack.animation.AnimationCreator;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class Assets.
+ * The Class Hero.
  *
  * @author Sawan
  */
-public class UIAssets {
-
+public class HeroAssests {
 	/** The Constant FILE_IMAGE_ATLAS. */
-	private final static String FILE_IMAGE_ATLAS = "data/ma/game/ui/UI_assets.atlas";
+	private final static String FILE_IMAGE_ATLAS = "data/ma/game/characters/Hero.atlas";
 	
 	/** The Constant FILE_UI_SKIN. */
 	private final static String FILE_UI_SKIN = "skin/uiskin.json";
 	
-	/** The Constant CARTWHEEL_FONT_FILE. */
-	private final static String CARTWHEEL_FONT_FILE = "skin/cartwheel.fnt";
-	
-	/** The Constant FILE_IMAGE_BACKGROUND_MAIN. */
-	//private final static String FILE_IMAGE_BACKGROUND_MAIN = "data/ma/game/menu_background.png";
 	
 	/** The atlas. */
 	public static TextureAtlas atlas;
@@ -60,38 +54,18 @@ public class UIAssets {
 	public static Skin skin;
 	
 	// Assets
+	/** The hero_standing. */
+	public static Animation hero_standing;
 	
-	/** The image_main_button_play. */
-	public static TextureRegion image_main_button_play;
+	/** The hero_jumping. */
+	public static Animation hero_jumping;
 	
-	/** The image_main_button_settings. */
-	public static TextureRegion image_main_button_settings;
+	/** The hero_dizzy. */
+	public static Animation hero_dizzy;
 	
-	/** The image_main_button_credits. */
-	public static TextureRegion image_main_button_credits;
+	/** The hero_faint. */
+	public static Animation hero_faint;
 	
-	/** The image_main_loader. */
-	public static TextureRegion image_main_loader;
-	
-	/** The image_main_title. */
-	public static TextureRegion image_main_title;
-	
-	/** The button_level. */
-	public static TextureRegion button_level;
-	
-	/** The image_level_table. */
-	public  static TextureRegion image_level_table;
-	
-	/** The image_level_star. */
-	public static TextureRegion image_level_star;
-	
-	/** The image_level_no_star. */
-	public static TextureRegion image_level_no_star;
-	
-	/** The cartwheel_font. */
-	public static BitmapFont cartwheel_font;
-	
-	public static TextureRegion image_empty_bg;
 	
 	/**
 	 * Loads texture file.
@@ -136,8 +110,6 @@ public class UIAssets {
 	public static void loadAll() {
 		relaseResources();
 		loadImages();
-		loadButtons();
-		loadFonts();
 		loadAnimations();
 		loadSoundsAndMusics();
 	}
@@ -154,36 +126,18 @@ public class UIAssets {
 	 * Load images.
 	 */
 	public static void loadImages() {
-		image_main_button_play = getAtlas().findRegion("play_button");
-		image_main_button_credits = getAtlas().findRegion("credits_button");
-		image_main_button_settings = getAtlas().findRegion("settings_button");
-		image_main_loader = getAtlas().findRegion("loader");
-		image_main_title = getAtlas().findRegion("title");
-		image_level_table = getAtlas().findRegion("levels_bg");
-		image_level_star = getAtlas().findRegion("star_level");
-		image_level_no_star = getAtlas().findRegion("no_star_level");
-		image_empty_bg = getAtlas().findRegion("empty_bg");
+
 	}
 
-	/**
-	 * Load buttons.
-	 */
-	public static void loadButtons() {
-		button_level = getAtlas().findRegion("level_button");
-	}
-
-	/**
-	 * Load fonts.
-	 */
-	public static void loadFonts() {
-		cartwheel_font = new BitmapFont(Gdx.files.internal(CARTWHEEL_FONT_FILE));
-	}
 
 	/**
 	 * Load animations.
 	 */
 	public static void loadAnimations() {
-
+		hero_standing = AnimationCreator.getAnimationFromMultiTextures(getAtlas(), "stand", 2, 0.2f, false, false);
+		hero_jumping = AnimationCreator.getAnimationFromMultiTextures(getAtlas(), "jump", 2, 0.2f, false, false);
+		hero_dizzy = AnimationCreator.getAnimationFromMultiTextures(getAtlas(), "dizzy", 2, 0.2f, false, false);
+		hero_faint = AnimationCreator.getAnimationFromMultiTextures(getAtlas(), "faint", 5, 0.2f, false, false);
 	}
 
 	/**
@@ -192,5 +146,4 @@ public class UIAssets {
 	public static void loadSoundsAndMusics() {
 	
 	}
-	
 }

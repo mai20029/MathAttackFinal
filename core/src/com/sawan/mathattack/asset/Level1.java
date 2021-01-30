@@ -1,9 +1,9 @@
 /**
- * File name:	Assets.java
+ * File name:	Level1.java
  * Version:		1.0
- * Date:		01/03/2015 19:33:18
- * Author:		Sawan
- * Copyright:	Copyright 200X Sawan
+ * Date:		20/3/2015 10:59:27
+ * Author:		Itop1
+ * Copyright:	Copyright 200X Itop1
  *
  *				This file is part of Foobar.
  *
@@ -28,30 +28,20 @@ package com.sawan.mathattack.asset;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Assets.
+ * @author Itop1
  *
- * @author Sawan
  */
-public class UIAssets {
-
+public class Level1 {
 	/** The Constant FILE_IMAGE_ATLAS. */
-	private final static String FILE_IMAGE_ATLAS = "data/ma/game/ui/UI_assets.atlas";
+	private final static String FILE_IMAGE_ATLAS = "data/ma/game/levels/Level1.atlas";
 	
 	/** The Constant FILE_UI_SKIN. */
 	private final static String FILE_UI_SKIN = "skin/uiskin.json";
-	
-	/** The Constant CARTWHEEL_FONT_FILE. */
-	private final static String CARTWHEEL_FONT_FILE = "skin/cartwheel.fnt";
-	
-	/** The Constant FILE_IMAGE_BACKGROUND_MAIN. */
-	//private final static String FILE_IMAGE_BACKGROUND_MAIN = "data/ma/game/menu_background.png";
 	
 	/** The atlas. */
 	public static TextureAtlas atlas;
@@ -60,38 +50,12 @@ public class UIAssets {
 	public static Skin skin;
 	
 	// Assets
+	public static TextureRegion clouds;
+	public static TextureRegion mountains;
+	public static TextureRegion soil;
+	public static TextureRegion sky;
+
 	
-	/** The image_main_button_play. */
-	public static TextureRegion image_main_button_play;
-	
-	/** The image_main_button_settings. */
-	public static TextureRegion image_main_button_settings;
-	
-	/** The image_main_button_credits. */
-	public static TextureRegion image_main_button_credits;
-	
-	/** The image_main_loader. */
-	public static TextureRegion image_main_loader;
-	
-	/** The image_main_title. */
-	public static TextureRegion image_main_title;
-	
-	/** The button_level. */
-	public static TextureRegion button_level;
-	
-	/** The image_level_table. */
-	public  static TextureRegion image_level_table;
-	
-	/** The image_level_star. */
-	public static TextureRegion image_level_star;
-	
-	/** The image_level_no_star. */
-	public static TextureRegion image_level_no_star;
-	
-	/** The cartwheel_font. */
-	public static BitmapFont cartwheel_font;
-	
-	public static TextureRegion image_empty_bg;
 	
 	/**
 	 * Loads texture file.
@@ -154,29 +118,24 @@ public class UIAssets {
 	 * Load images.
 	 */
 	public static void loadImages() {
-		image_main_button_play = getAtlas().findRegion("play_button");
-		image_main_button_credits = getAtlas().findRegion("credits_button");
-		image_main_button_settings = getAtlas().findRegion("settings_button");
-		image_main_loader = getAtlas().findRegion("loader");
-		image_main_title = getAtlas().findRegion("title");
-		image_level_table = getAtlas().findRegion("levels_bg");
-		image_level_star = getAtlas().findRegion("star_level");
-		image_level_no_star = getAtlas().findRegion("no_star_level");
-		image_empty_bg = getAtlas().findRegion("empty_bg");
+		sky = getAtlas().findRegion("sky");
+		clouds = getAtlas().findRegion("clouds");
+		mountains = getAtlas().findRegion("mountains");
+		soil = getAtlas().findRegion("Tile");
 	}
 
 	/**
 	 * Load buttons.
 	 */
 	public static void loadButtons() {
-		button_level = getAtlas().findRegion("level_button");
+
 	}
 
 	/**
 	 * Load fonts.
 	 */
 	public static void loadFonts() {
-		cartwheel_font = new BitmapFont(Gdx.files.internal(CARTWHEEL_FONT_FILE));
+
 	}
 
 	/**
@@ -192,5 +151,4 @@ public class UIAssets {
 	public static void loadSoundsAndMusics() {
 	
 	}
-	
 }
