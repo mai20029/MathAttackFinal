@@ -45,9 +45,12 @@ public class MAGameManager extends AbstractGameManager implements IGameManager {
 	public WorldLayerBG worldLayer_background;
 	public WorldLayerActors worldLayer_actors;
 	public WorldLayerOther worldLayer_other;
+	
+	public int level;
 
-	public MAGameManager(Stage stage, AbstractScreen screen) {
+	public MAGameManager(Stage stage, AbstractScreen screen, int level) {
 		super(stage, screen);
+		this.level = level;
 		//
 		setUpWorld();
 		//
@@ -70,18 +73,18 @@ public class MAGameManager extends AbstractGameManager implements IGameManager {
 		// Layer3 - Snow effect
 		//
 		worldLayer_background = new WorldLayerBG(this, 0, 0, AppSettings.SCREEN_W,
-				AppSettings.SCREEN_H);
+				AppSettings.SCREEN_H, level);
 		worldLayer_actors = new WorldLayerActors(this, 0, 0, AppSettings.SCREEN_W,
+				AppSettings.SCREEN_H, level);
+		worldLayer_other = new WorldLayerOther(this, 0, 0, AppSettings.SCREEN_W,
 				AppSettings.SCREEN_H);
-		//worldLayer_other = new WorldLayerOther(this, 0, 0, AppSettings.SCREEN_W,
-			//	AppSettings.SCREEN_H);
 
 		//
 		// Add all layers to world
 		// #############################################################
 		world.addActor(worldLayer_background);
 		world.addActor(worldLayer_actors);
-		//world.addActor(worldLayer_other);
+		world.addActor(worldLayer_other);
 
 		//
 		// Add the main world to stage
@@ -96,7 +99,21 @@ public class MAGameManager extends AbstractGameManager implements IGameManager {
 
 	@Override
 	public void checkGameCondition() {
-		worldLayer_actors.isHeroAlive();
+		if (!worldLayer_actors.isHeroAlive()) {
+			worldLayer_actors.killHero();
+			worldLayer_other.quiz_table.setVisible(false);
+			//worldLayer_other.showGameOver();
+		}
+		
+		if (getGameState() == GameState.GAME_PAUSED) {
+			worldLayer_other.quiz_table.setVisible(false);
+		}
+		
+		if (getGameState() == GameState.GAME_RUNNING) {
+			worldLayer_other.quiz_table.setVisible(true);
+		}
+		
+		worldLayer_actors.gameWin();
 	}
 
 	@Override

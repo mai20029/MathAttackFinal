@@ -26,6 +26,7 @@
 package com.sawan.mathattack.game.screen;
 
 import com.sawan.mathattack.game.AbstractGame;
+import com.sawan.mathattack.game.GameState;
 import com.sawan.mathattack.game.helpers.MAGameScreenMenu;
 import com.sawan.mathattack.game.managers.MAGameManager;
 import com.sawan.mathattack.interfaces.IGameScreen;
@@ -39,12 +40,20 @@ import com.sawan.mathattack.screen.AbstractScreen;
 public class MAGameScreen extends AbstractScreen implements IScreen, IGameScreen {
 	public MAGameManager game_manager;
 	public MAGameScreenMenu gameScreenMenu;
+	public boolean game_over;
+	public boolean game_win;
+	public int level;
 	
-	public MAGameScreen(AbstractGame game, String screenName) {
+	public MAGameScreen(AbstractGame game, String screenName, int level_number) {
 		super(game, screenName);
+		game_over = true;
+		game_win = true;
+		level = level_number;
 		//
 		setUpGameManager();
 		setUpMenu();
+		
+		game_manager.setGameState(GameState.GAME_RUNNING);
 	}
 	
 	@Override
@@ -56,6 +65,16 @@ public class MAGameScreen extends AbstractScreen implements IScreen, IGameScreen
 		// ######################################################
 		if(game_manager != null){
 			game_manager.update(delta);
+		}
+		
+		if (game_manager.getGameState() == GameState.GAME_OVER && game_over == true) {
+			gameScreenMenu.showGameOver(this);
+			game_over = false;
+		}
+		
+		if (game_manager.getGameState() == GameState.GAME_LEVELWIN && game_win == true) {
+			gameScreenMenu.showGameWin(this);
+			game_win = false;
 		}
 			
 	}
@@ -69,12 +88,11 @@ public class MAGameScreen extends AbstractScreen implements IScreen, IGameScreen
 	public void setUpMenu() {
 		gameScreenMenu = new MAGameScreenMenu();
 		gameScreenMenu.setUpGameScreenMenu(MAGameScreen.this);
-		gameScreenMenu.setUpMathQuiz(this);
 	}
 
 	@Override
 	public void setUpGameManager() {
-		game_manager = new MAGameManager(getStage(), this);
+		game_manager = new MAGameManager(getStage(), this, level);
 	}
 
 	@Override

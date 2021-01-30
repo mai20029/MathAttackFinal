@@ -29,9 +29,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
+import com.badlogic.gdx.utils.Timer;
+import com.badlogic.gdx.utils.Timer.Task;
 import com.sawan.mathattack.asset.BlueMonsterAssets;
+import com.sawan.mathattack.asset.GameAssets;
 import com.sawan.mathattack.asset.HeroAssests;
-import com.sawan.mathattack.asset.UIAssets;
 import com.sawan.mathattack.collision.CollisionDetector;
 import com.sawan.mathattack.game.GameState;
 import com.sawan.mathattack.game.managers.MAGameManager;
@@ -54,18 +56,20 @@ public class WorldLayerActors extends AbstractWorldScene2d {
 	
 	protected final static int NUM_ENEMIES = 20;
 	
+	public int level;
 	
-	public WorldLayerActors(MAGameManager gameManager, float posX, float posY, float worldWidth, float worldHeight) {
+	public WorldLayerActors(MAGameManager gameManager, float posX, float posY, float worldWidth, float worldHeight, int level) {
 		super(posX, posY, worldWidth, worldHeight);
 		this.gameManager =  gameManager;
 		setUpHero();
 		setUpEnemies();
-		
+		this.level = level;
 	}
 	
 	public void setUpHero() {
 		hero = new Hero(gameManager.worldLayer_background.SOIL_WIDHT, gameManager.worldLayer_background.SOIL_HEIGHT, true);
 		bullets = new ArrayList<Bullet>();
+		hero.setAlive(true);
 		
 		hero.setY(gameManager.worldLayer_background.SOIL_HEIGHT * AppSettings.getWorldSizeRatio());
 		hero.setX(0f * AppSettings.getWorldPositionXRatio());
@@ -97,20 +101,28 @@ public class WorldLayerActors extends AbstractWorldScene2d {
 	}
 	
 	public void killHero() {
-		if (hero.getLifes() <= 0) {
-			hero.setAlive(false);
+		
 			hero.setAnimationMomentary(HeroAssests.hero_faint, true, null, true, true);
-			if (hero.isAnimationActive()) {
-				gameManager.setGameState(GameState.GAME_OVER);
-			}
-		}
+			Timer.schedule(new Task() {
+				@Override
+				public void run() {
+					gameManager.setGameState(GameState.GAME_OVER);
+				}
+			}, 0.9f);
 	}
+
 	
 	public boolean isHeroAlive() {
 		 if (hero.isAlive()) {
 			return true;
 		} else {
 			return false;
+		}
+	}
+	
+	public void gameWin() {
+		if (enemies.isEmpty() && hero.getLifes() > 0) {
+			gameManager.setGameState(GameState.GAME_LEVELWIN);
 		}
 	}
 	
@@ -125,9 +137,10 @@ public class WorldLayerActors extends AbstractWorldScene2d {
 				removeActor(enemy);
 				
 				hero.setLifes(hero.getLifes() - 1);
-				if (!isHeroAlive()) {
-					killHero();
+				if (hero.getLifes() <= 0) {
+					hero.setAlive(false);
 				}
+				
 				hero.setAnimationMomentary(HeroAssests.hero_dizzy, true, HeroAssests.hero_standing, true, false);
 				
 				hero.setLost_life(true);				
@@ -149,6 +162,7 @@ public class WorldLayerActors extends AbstractWorldScene2d {
 					enemies.remove(blueMonster);
 					removeActor(bullet);
 					removeActor(blueMonster);
+					break;
 				}
 			}
 			
@@ -156,14 +170,14 @@ public class WorldLayerActors extends AbstractWorldScene2d {
 	}
 	
 	public void addBullet() {
-		final Bullet bullet = new Bullet(25f, 25f, true);
+		final Bullet bullet = new Bullet(60f, 60f, true);
 		bullet.setX(hero.getX() + hero.getWidth());
-		bullet.setY(gameManager.worldLayer_background.SOIL_HEIGHT);
-		bullet.setTextureRegion(UIAssets.image_level_star, true);
+		bullet.setY((gameManager.worldLayer_background.SOIL_HEIGHT * AppSettings.getWorldPositionYRatio()) + (hero.getHeight() / 2) - bullet.getHeight());
+		bullet.setTextureRegion(GameAssets.loadRandomProjectile(), true);
 		
 		bullets.add(bullet);
 		
-		bullet.startMoving(gameManager.getStage().getWidth(), 125f, true);
+		bullet.startMoving(gameManager.getStage().getWidth(), 125f * AppSettings.getWorldPositionXRatio(), true);
 		
 		addActor(bullet);
 	}
