@@ -27,13 +27,13 @@ package com.sawan.mathattack.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.sawan.mathattack.MAGame;
+import com.sawan.mathattack.MainStarter;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.width = MAGame.WIDTH;
-		config.height = MAGame.HEIGHT;
-		new LwjglApplication(new MAGame(), config);
+		config.width = 600;
+		config.height = 400;
+		new LwjglApplication(new MainStarter(), config);
 	}
 }
