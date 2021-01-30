@@ -1,7 +1,7 @@
 /**
- * File name:	DesktopLauncher.java
+ * File name:	ScreenManager.java
  * Version:		1.0
- * Date:		@date 15:39:31
+ * Date:		25/12/2014 16:27:26
  * Author:		Sawan J. Kapai Harpalani
  * Copyright:	Copyright 200X Sawan J. Kapai Harpalani
  *
@@ -23,18 +23,38 @@
  *				Public License along with Math Attack. If not, see 
  *				http://www.gnu.org/licenses/.
  */
-package com.sawan.mathattack.desktop;
+package com.sawan.mathattack.screen;
 
-import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
-import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.sawan.mathattack.MAGame;
-import com.sawan.mathattack.constants.Constants;
-
-public class DesktopLauncher {
-	public static void main (String[] arg) {
-		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.width = Constants.WIDTH;
-		config.height = Constants.HEIGHT;
-		new LwjglApplication(new MAGame(), config);
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ScreenManager.
+ *
+ * @author Sawan J. Kapai Harpalani
+ */
+public class ScreenManager {
+	
+	/** The current_screen. */
+	private static Screen current_screen;
+	
+	/**
+	 * Sets the current screen.
+	 *
+	 * @param screen the new current screen
+	 */
+	public static void setCurrentScreen(Screen screen) {
+		if (current_screen != null) {
+			current_screen.dispose();
+		}
+		current_screen = screen;
+		current_screen.create();
+	}
+	
+	/**
+	 * Gets the current screen.
+	 *
+	 * @return the current screen
+	 */
+	public static Screen getCurrentScreen() {
+		return current_screen;
 	}
 }

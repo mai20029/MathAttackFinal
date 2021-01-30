@@ -1,7 +1,7 @@
 /**
- * File name:	DesktopLauncher.java
+ * File name:	Player.java
  * Version:		1.0
- * Date:		@date 15:39:31
+ * Date:		@date 19:56:04
  * Author:		Sawan J. Kapai Harpalani
  * Copyright:	Copyright 200X Sawan J. Kapai Harpalani
  *
@@ -23,18 +23,32 @@
  *				Public License along with Math Attack. If not, see 
  *				http://www.gnu.org/licenses/.
  */
-package com.sawan.mathattack.desktop;
+package com.sawan.mathattack.characters;
 
-import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
-import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.sawan.mathattack.MAGame;
-import com.sawan.mathattack.constants.Constants;
+import com.badlogic.gdx.math.Vector2;
+import com.sawan.mathattack.textures.TextureManager;
 
-public class DesktopLauncher {
-	public static void main (String[] arg) {
-		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.width = Constants.WIDTH;
-		config.height = Constants.HEIGHT;
-		new LwjglApplication(new MAGame(), config);
+/**
+ * The Class Player.
+ */
+public class Player extends Entity {
+
+	/**
+	 * Instantiates a new player.
+	 *
+	 * @param position the position
+	 * @param direction the direction
+	 */
+	public Player(Vector2 position, Vector2 direction) {
+		super(TextureManager.PLAYER, position, direction);
 	}
+
+	/* (non-Javadoc)
+	 * @see com.sawan.mathattack.characters.Entity#update()
+	 */
+	@Override
+	public void update() {	
+		position.add(direction);
+	}
+
 }

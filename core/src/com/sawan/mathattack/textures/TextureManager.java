@@ -1,7 +1,7 @@
 /**
- * File name:	DesktopLauncher.java
+ * File name:	TextureManager.java
  * Version:		1.0
- * Date:		@date 15:39:31
+ * Date:		25/12/2014 18:21:15
  * Author:		Sawan J. Kapai Harpalani
  * Copyright:	Copyright 200X Sawan J. Kapai Harpalani
  *
@@ -23,18 +23,15 @@
  *				Public License along with Math Attack. If not, see 
  *				http://www.gnu.org/licenses/.
  */
-package com.sawan.mathattack.desktop;
+package com.sawan.mathattack.textures;
 
-import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
-import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.sawan.mathattack.MAGame;
-import com.sawan.mathattack.constants.Constants;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 
-public class DesktopLauncher {
-	public static void main (String[] arg) {
-		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.width = Constants.WIDTH;
-		config.height = Constants.HEIGHT;
-		new LwjglApplication(new MAGame(), config);
-	}
+/**
+ * @author Sawan J. Kapai Harpalani
+ *
+ */
+public class TextureManager {
+	public static Texture PLAYER = new Texture(Gdx.files.internal("0.png"));
 }

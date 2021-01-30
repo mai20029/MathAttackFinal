@@ -1,11 +1,11 @@
 /**
- * File name:	DesktopLauncher.java
+ * File name:	Constants.java
  * Version:		1.0
- * Date:		@date 15:39:31
- * Author:		Sawan J. Kapai Harpalani
- * Copyright:	Copyright 200X Sawan J. Kapai Harpalani
+ * Date:		22/01/2015 15:01:41
+ * Author:		Sawan
+ * Copyright:	Copyright 200X Sawan
  *
- *				This file is part of Math Attack.
+ *				This file is part of Foobar.
  *
  *				Math Attack is free software: you can redistribute it 
  *				and/or modify it under the terms of the GNU General
@@ -23,18 +23,18 @@
  *				Public License along with Math Attack. If not, see 
  *				http://www.gnu.org/licenses/.
  */
-package com.sawan.mathattack.desktop;
+package com.sawan.mathattack.constants;
 
-import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
-import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.sawan.mathattack.MAGame;
-import com.sawan.mathattack.constants.Constants;
-
-public class DesktopLauncher {
-	public static void main (String[] arg) {
-		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.width = Constants.WIDTH;
-		config.height = Constants.HEIGHT;
-		new LwjglApplication(new MAGame(), config);
-	}
+/**
+ * @author Sawan
+ *
+ */
+public class Constants {
+	
+	/** The Constant WIDTH. */
+	public final static int WIDTH = 800;
+	
+	
+	/** The Constant HEIGHT. */
+	public final static int HEIGHT = 480;
 }

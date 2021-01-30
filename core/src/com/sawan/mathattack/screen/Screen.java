@@ -1,7 +1,7 @@
 /**
- * File name:	DesktopLauncher.java
+ * File name:	Screen.java
  * Version:		1.0
- * Date:		@date 15:39:31
+ * Date:		25/12/2014 16:19:25
  * Author:		Sawan J. Kapai Harpalani
  * Copyright:	Copyright 200X Sawan J. Kapai Harpalani
  *
@@ -23,18 +23,59 @@
  *				Public License along with Math Attack. If not, see 
  *				http://www.gnu.org/licenses/.
  */
-package com.sawan.mathattack.desktop;
+package com.sawan.mathattack.screen;
 
-import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
-import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.sawan.mathattack.MAGame;
-import com.sawan.mathattack.constants.Constants;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class DesktopLauncher {
-	public static void main (String[] arg) {
-		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.width = Constants.WIDTH;
-		config.height = Constants.HEIGHT;
-		new LwjglApplication(new MAGame(), config);
-	}
+/**
+ * The Class Screen.
+ *
+ * @author Sawan J. Kapai Harpalani
+ */
+public abstract class Screen {
+	
+	/**
+	 * Creates the.
+	 */
+	public abstract void create();
+	
+	/**
+	 * Render.
+	 *
+	 * @param sprite_batch the sprite_batch
+	 */
+	public abstract void render(SpriteBatch sprite_batch);
+	
+	/**
+	 * Resize.
+	 *
+	 * @param width the width
+	 * @param height the height
+	 */
+	public abstract void resize(int width, int height);
+	
+	/**
+	 * Dispose.
+	 */
+	public abstract void dispose();
+	
+	/**
+	 * Hide.
+	 */
+	public abstract void hide();
+	
+	/**
+	 * Pause.
+	 */
+	public abstract void pause();
+	
+	/**
+	 * Resume.
+	 */
+	public abstract void resume();
+	
+	/**
+	 * Update.
+	 */
+	public abstract void update();
 }
