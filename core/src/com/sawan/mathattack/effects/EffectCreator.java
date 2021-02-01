@@ -32,16 +32,8 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.sawan.mathattack.settings.MtxLogger;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class EffectCreator.
- */
 public class EffectCreator {
-	
-	/** The Constant logTag. */
 	private static final String logTag = "MtxEffectCreator";
-	
-	/** The log active. */
 	public static boolean logActive = true;
 
 	//
@@ -59,15 +51,8 @@ public class EffectCreator {
 	// SINGLE EFFECTS
 	// ################################################################
 	/**
-	 * Scale effect (SC).
-	 *
-	 * @param actor the actor
-	 * @param scaleRatioX the scale ratio x
-	 * @param scaleRatioY the scale ratio y
-	 * @param duration the duration
-	 * @param group the group
-	 * @param removeActor the remove actor
-	 */
+	 * Scale effect (SC)
+	 * */
 	public static void create_SC(Actor actor, float scaleRatioX,
 			float scaleRatioY, float duration, final Group group,
 			final boolean removeActor) {
@@ -89,14 +74,8 @@ public class EffectCreator {
 	}
 
 	/**
-	 * Fade Out (FO).
-	 *
-	 * @param actor the actor
-	 * @param duration the duration
-	 * @param delay the delay
-	 * @param group the group
-	 * @param removeActor the remove actor
-	 */
+	 * Fade Out (FO)
+	 * */
 	public static void create_FO(Actor actor, float duration, float delay,
 			final Group group, final boolean removeActor) {
 		if (actor != null) {
@@ -116,14 +95,8 @@ public class EffectCreator {
 	}
 
 	/**
-	 * Fade In (FI).
-	 *
-	 * @param actor the actor
-	 * @param duration the duration
-	 * @param delay the delay
-	 * @param group the group
-	 * @param removeActor the remove actor
-	 */
+	 * Fade In (FI)
+	 * */
 	public static void create_FI(Actor actor, float duration, float delay,
 			final Group group, final boolean removeActor) {
 		if (actor != null) {
@@ -143,16 +116,8 @@ public class EffectCreator {
 	}
 
 	/**
-	 * Move to a position.
-	 *
-	 * @param actor the actor
-	 * @param duration the duration
-	 * @param delayBefore the delay before
-	 * @param posX the pos x
-	 * @param posY the pos y
-	 * @param group the group
-	 * @param removeActor the remove actor
-	 */
+	 * Move to a position
+	 * */
 	public static void create_MT(Actor actor, float duration,
 			float delayBefore, float posX, float posY, final Group group,
 			final boolean removeActor) {
@@ -173,15 +138,8 @@ public class EffectCreator {
 	}
 
 	/**
-	 * Shake effect (SHK).
-	 *
-	 * @param actor the actor
-	 * @param shakeAngle the shake angle
-	 * @param originalAngle the original angle
-	 * @param duration the duration
-	 * @param group the group
-	 * @param removeActor the remove actor
-	 */
+	 * Shake effect (SHK)
+	 * */
 	public static void create_SHK(Actor actor, float shakeAngle,
 			float originalAngle, float duration, final Group group,
 			final boolean removeActor) {
@@ -207,15 +165,8 @@ public class EffectCreator {
 	// DOUBLE EFFECTS (Sequence - Chain reaction)
 	// ################################################################
 	/**
-	 * Scale effect and Back to previous scale (SC, BTN).
-	 *
-	 * @param actor the actor
-	 * @param scaleRatioX the scale ratio x
-	 * @param scaleRatioY the scale ratio y
-	 * @param duration the duration
-	 * @param group the group
-	 * @param removeActor the remove actor
-	 */
+	 * Scale effect and Back to previous scale (SC, BTN)
+	 * */
 	public static void create_SC_BTN(Actor actor, float scaleRatioX,
 			float scaleRatioY, float duration, final Group group,
 			final boolean removeActor) {
@@ -241,14 +192,7 @@ public class EffectCreator {
 
 	/**
 	 * Scale effect and Back to original (1.0f)
-	 *
-	 * @param actor the actor
-	 * @param scaleRatioX the scale ratio x
-	 * @param scaleRatioY the scale ratio y
-	 * @param duration the duration
-	 * @param group the group
-	 * @param removeActor the remove actor
-	 */
+	 * */
 	public static void create_SC_BTO(Actor actor, float scaleRatioX,
 			float scaleRatioY, float duration, final Group group,
 			final boolean removeActor) {
@@ -270,16 +214,8 @@ public class EffectCreator {
 	}
 
 	/**
-	 * Scale effect, Fade Out (SC, FO).
-	 *
-	 * @param actor the actor
-	 * @param scaleRatioX the scale ratio x
-	 * @param scaleRatioY the scale ratio y
-	 * @param duration the duration
-	 * @param delayBeforeFadeOut the delay before fade out
-	 * @param group the group
-	 * @param removeActor the remove actor
-	 */
+	 * Scale effect, Fade Out (SC, FO)
+	 * */
 	public static void create_SC_FO(Actor actor, float scaleRatioX,
 			float scaleRatioY, float duration, float delayBeforeFadeOut,
 			final Group group, final boolean removeActor) {
@@ -302,17 +238,8 @@ public class EffectCreator {
 	}
 
 	/**
-	 * Scale effect, Shake effect (SC, SHK).
-	 *
-	 * @param actor the actor
-	 * @param scaleRatioX the scale ratio x
-	 * @param scaleRatioY the scale ratio y
-	 * @param shakeAngle the shake angle
-	 * @param originalAngle the original angle
-	 * @param duration the duration
-	 * @param group the group
-	 * @param removeActor the remove actor
-	 */
+	 * Scale effect, Shake effect (SC, SHK)
+	 * */
 	public static void create_SC_SHK(Actor actor, float scaleRatioX,
 			float scaleRatioY, float shakeAngle, float originalAngle,
 			float duration, final Group group, final boolean removeActor) {
@@ -339,16 +266,8 @@ public class EffectCreator {
 	// TRIPLE EFFECTS (Sequence - Chain reaction)
 	// ################################################################
 	/**
-	 * Scale effect, Back To Normal, Fade Out (SC, BTN, FO).
-	 *
-	 * @param actor the actor
-	 * @param scaleRatioX the scale ratio x
-	 * @param scaleRatioY the scale ratio y
-	 * @param duration the duration
-	 * @param delayBeforeFadeOut the delay before fade out
-	 * @param group the group
-	 * @param removeActor the remove actor
-	 */
+	 * Scale effect, Back To Normal, Fade Out (SC, BTN, FO)
+	 * */
 	public static void create_SC_BTN_FO(Actor actor, float scaleRatioX,
 			float scaleRatioY, float duration, float delayBeforeFadeOut,
 			final Group group, final boolean removeActor) {
@@ -372,17 +291,8 @@ public class EffectCreator {
 	}
 
 	/**
-	 * Scale effect, Shake effect, Back To Normal (SC, SHK, BTN).
-	 *
-	 * @param actor the actor
-	 * @param scaleRatioX the scale ratio x
-	 * @param scaleRatioY the scale ratio y
-	 * @param shakeAngle the shake angle
-	 * @param originalAngle the original angle
-	 * @param duration the duration
-	 * @param group the group
-	 * @param removeActor the remove actor
-	 */
+	 * Scale effect, Shake effect, Back To Normal (SC, SHK, BTN)
+	 * */
 	public static void create_SC_SHK_BTN(Actor actor, float scaleRatioX,
 			float scaleRatioY, float shakeAngle, float originalAngle,
 			float duration, final Group group, final boolean removeActor) {
@@ -406,12 +316,6 @@ public class EffectCreator {
 		}
 	}
 
-	/**
-	 * Removes the actor.
-	 *
-	 * @param group the group
-	 * @param actor the actor
-	 */
 	private static void removeActor(Group group, Actor actor) {
 		if (group != null && actor != null) {
 			actor.clearActions();

@@ -29,7 +29,6 @@ import java.util.Random;
 
 import com.sawan.mathattack.models.SmartActor;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MathAttackButton.
  *

@@ -26,10 +26,6 @@
 
 package com.sawan.mathattack.interfaces;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Interface IGameSettingManager.
- */
 public interface IGameSettingManager {
 	
 	/**

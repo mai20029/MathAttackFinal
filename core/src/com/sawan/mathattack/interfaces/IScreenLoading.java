@@ -25,10 +25,6 @@
  */
 package com.sawan.mathattack.interfaces;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Interface IScreenLoading.
- */
 public interface IScreenLoading {
 	/**
 	 * Set up loading screen (Loading/Splash assets, optional loading timer,

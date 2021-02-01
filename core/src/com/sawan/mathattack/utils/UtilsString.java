@@ -25,18 +25,11 @@
  */
 package com.sawan.mathattack.utils;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class UtilsString.
- */
 public class UtilsString {
 
 	/**
-	 * Remove last chracter of a string.
-	 *
-	 * @param s the s
-	 * @return the string
-	 */
+	 * Remove last chracter of a string
+	 * */
 	public static String removeLastChar(String s) {
 		if (s == null || s.length() == 0) {
 			return s;

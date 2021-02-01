@@ -26,10 +26,6 @@
 
 package com.sawan.mathattack.interfaces;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Interface IGameScreen.
- */
 public interface IGameScreen {
 	/**
 	 * Set up game manager, add "GameManager.Update()" method to render() method of Screen,

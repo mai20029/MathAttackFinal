@@ -30,27 +30,16 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.regex.Pattern;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class UtilsNumbers.
- */
 public class UtilsNumbers {
 	//
-	/** The Constant logTag. */
 	protected final static String logTag = "MtxUtilsNumbersLog";
-	
-	/** The log active. */
 	public static boolean logActive = true;
 
-	/** The double pattern. */
 	private static Pattern doublePattern = Pattern.compile("-?\\d+(\\.\\d*)?");
 
 	/**
-	 * Check if a string is parseable to integer/double.
-	 *
-	 * @param string the string
-	 * @return true, if is int dob
-	 */
+	 * Check if a string is parseable to integer/double
+	 * */
 	public static boolean isIntDob(String string) {
 		return doublePattern.matcher(string).matches();
 	}
@@ -60,10 +49,11 @@ public class UtilsNumbers {
 	 * <p>
 	 * EXAMPLE: <br>
 	 * Array [1,2,3,4,5,6] getting shuffled <br>
-	 * After shuffle [2,1,6,3,5,4] or any other combination.
-	 *
-	 * @param a            array to shuffle
-	 */
+	 * After shuffle [2,1,6,3,5,4] or any other combination
+	 * 
+	 * @param a
+	 *            array to shuffle
+	 * */
 	public static void shuffleArray(int[] a) {
 		int n = a.length;
 		Random random = new Random();
@@ -75,12 +65,8 @@ public class UtilsNumbers {
 	}
 
 	/**
-	 * Shuffle helper.
-	 *
-	 * @param a the a
-	 * @param i the i
-	 * @param change the change
-	 */
+	 * Shuffle helper
+	 * */
 	public static void swap(int[] a, int i, int change) {
 		int helper = a[i];
 		a[i] = a[change];
@@ -88,11 +74,8 @@ public class UtilsNumbers {
 	}
 
 	/**
-	 * Calculate average number of float list.
-	 *
-	 * @param numbersList the numbers list
-	 * @return the float
-	 */
+	 * Calculate average number of float list
+	 * */
 	public static float calculateAverage(ArrayList<Float> numbersList) {
 		Float sum = 0f;
 		for (Float number : numbersList) {
@@ -102,12 +85,10 @@ public class UtilsNumbers {
 	}
 
 	/**
-	 * Find the closets integer of a given integer among integer array list.
-	 *
-	 * @param list the list
-	 * @param value the value
+	 * Find the closets integer of a given integer among integer array list
+	 * 
 	 * @return the value found else -1
-	 */
+	 * */
 	public static int findClosestNumber(ArrayList<Integer> list, int value) {
 		int closestMatch = -1;
 		boolean isFirstNumberTaken = false;

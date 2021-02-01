@@ -37,11 +37,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.sawan.mathattack.animation.AnimationCreator;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class GameAssets.
- *
  * @author Sawan
+ *
  */
 public class GameAssets {
 	
@@ -58,31 +56,15 @@ public class GameAssets {
 	public static Skin skin;
 	
 	// Assets
-	/** The heart. */
 	public static Animation heart;
-	
-	/** The eraser. */
 	public static TextureRegion eraser;
-	
-	/** The scissors. */
 	public static TextureRegion scissors;
-	
-	/** The pencil. */
 	public static TextureRegion pencil;
-	
-	/** The ruler. */
 	public static TextureRegion ruler;
-	
-	/** The semicircle. */
 	public static TextureRegion semicircle;
-	
-	/** The trianguler. */
 	public static TextureRegion trianguler;
-	
-	/** The pause. */
 	public static TextureRegion pause;
 	
-	/** The projectiles. */
 	public static ArrayList<TextureRegion> projectiles;
 	
 	/**
@@ -191,11 +173,6 @@ public class GameAssets {
 	
 	}
 	
-	/**
-	 * Load random projectile.
-	 *
-	 * @return the texture region
-	 */
 	public static TextureRegion loadRandomProjectile() {
 		Random rnd = new Random();
 		

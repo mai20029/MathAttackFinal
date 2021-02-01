@@ -30,10 +30,6 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class AnimationCreator.
- */
 public class AnimationCreator {
 
 	/**
@@ -47,15 +43,18 @@ public class AnimationCreator {
 	 * frame2 = "walk01" (Actual name in texture atlas)<br>
 	 * frame3 = "walk02" (Actual name in texture atlas)<br>
 	 * ...
-	 *
-	 * @param textureAtlas            atlas which contains texture frames
-	 * @param animationBaseName            base name of the frames in atlas
-	 * @param numberOfFrames            number of frames of the animation
-	 * @param frameDuration            each frame duration on play
-	 * @param flipX the flip x
-	 * @param flipY the flip y
+	 * 
+	 * @param textureAtlas
+	 *            atlas which contains texture frames
+	 * @param animationBaseName
+	 *            base name of the frames in atlas
+	 * @param numberOfFrames
+	 *            number of frames of the animation
+	 * @param frameDuration
+	 *            each frame duration on play
 	 * @return animation created
-	 */
+	 * 
+	 * */
 	public static Animation getAnimationFromMultiTextures(
 			TextureAtlas textureAtlas, String animationBaseName,
 			int numberOfFrames, float frameDuration, boolean flipX,

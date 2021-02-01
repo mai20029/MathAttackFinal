@@ -25,7 +25,6 @@
  */
 package com.sawan.mathattack.game_screens.main;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.sawan.mathattack.asset.Backgrounds;
 import com.sawan.mathattack.asset.UIAssets;
@@ -40,7 +39,6 @@ import com.sawan.mathattack.scene2d.ui.TableModel;
 import com.sawan.mathattack.screen.AbstractScreen;
 import com.sawan.mathattack.settings.AppSettings;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MathAttackMainMenuScreen.
  *
@@ -131,7 +129,6 @@ public class MAMainMenuScreen extends AbstractScreen implements IScreen {
 		setSecondsTime(0);
 		isSplashCompleted = false;
 		
-		setBackButtonActive(true);
 		
 		// Set Background image
 		setBackgroundTexture(Backgrounds.image_main_background);
@@ -210,12 +207,6 @@ public class MAMainMenuScreen extends AbstractScreen implements IScreen {
 				title_animation_timer = getSecondsTime() + TITLE_LOOP_ANIMATION;
 			}
 		}
-	}
-	
-	@Override
-	public void keyBackPressed() {
-		super.keyBackPressed();
-		Gdx.app.exit();
 	}
 	
 }

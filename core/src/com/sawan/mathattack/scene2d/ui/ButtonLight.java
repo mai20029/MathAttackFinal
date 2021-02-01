@@ -28,24 +28,11 @@ package com.sawan.mathattack.scene2d.ui;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.sawan.mathattack.scene2d.AbstractGroupLight;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class ButtonLight.
- */
 public class ButtonLight extends AbstractGroupLight {
 	
 	//
-	/** The is toggle active. */
 	private boolean isToggleActive;
 
-	/**
-	 * Instantiates a new button light.
-	 *
-	 * @param width the width
-	 * @param height the height
-	 * @param texture the texture
-	 * @param DIPActive the DIP active
-	 */
 	public ButtonLight(float width, float height, TextureRegion texture,
 			boolean DIPActive) {
 		super(width, height, DIPActive);
@@ -54,27 +41,14 @@ public class ButtonLight extends AbstractGroupLight {
 		this.isToggleActive = false;
 	}
 
-	/**
-	 * Checks if is toggle active.
-	 *
-	 * @return true, if is toggle active
-	 */
 	public boolean isToggleActive() {
 		return isToggleActive;
 	}
 
-	/**
-	 * Sets the toggle active.
-	 *
-	 * @param isToggleActive the new toggle active
-	 */
 	public void setToggleActive(boolean isToggleActive) {
 		this.isToggleActive = isToggleActive;
 	}
 
-	/**
-	 * Sets the toggle switch.
-	 */
 	public void setToggleSwitch() {
 		if (isToggleActive) {
 			isToggleActive = false;

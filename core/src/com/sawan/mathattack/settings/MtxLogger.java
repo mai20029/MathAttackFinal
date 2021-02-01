@@ -40,21 +40,13 @@ import com.sawan.mathattack.scene2d.AbstractWorldScene2d;
 import com.sawan.mathattack.screen.AbstractScreen;
 import com.sawan.mathattack.utils.UtilsDisposer;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class MtxLogger.
- */
 public class MtxLogger {
-	
-	/** The is master logger active. */
 	private static boolean isMasterLoggerActive = false;
 
 	/**
 	 * Set logs that you want to see, or kill all logs with master logger,
-	 * default masterlog is false.
-	 *
-	 * @param isMasterLoggerActive the new logs
-	 */
+	 * default masterlog is false
+	 * */
 	public static void setLogs(boolean isMasterLoggerActive) {
 		// Master log (To show or not to show any log)
 		MtxLogger.isMasterLoggerActive = isMasterLoggerActive;
@@ -86,13 +78,8 @@ public class MtxLogger {
 	}
 
 	/**
-	 * Log something.
-	 *
-	 * @param objectLoggerActive the object logger active
-	 * @param methodLoggerActive the method logger active
-	 * @param tag the tag
-	 * @param log the log
-	 */
+	 * Log something
+	 * */
 	public static void log(boolean objectLoggerActive,
 			boolean methodLoggerActive, String tag, String log) {
 		// Log

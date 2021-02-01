@@ -30,33 +30,15 @@ import java.util.Random;
 
 import com.badlogic.gdx.audio.Music;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class MusicManager.
- */
 public class MusicManager {
 	//
-	/** The rnd. */
 	private Random rnd;
-	
-	/** The music shuffle list. */
 	private ArrayList<Music> musicShuffleList;
-	
-	/** The current music. */
 	private Music currentMusic;
-	
-	/** The audio manager. */
 	private AudioManager audioManager;
-	
-	/** The is shuffling. */
 	private boolean isShuffling = false;
-	
-	/** The shuffle volume. */
 	private float shuffleVolume = 0.5f;
 
-	/**
-	 * Instantiates a new music manager.
-	 */
 	public MusicManager() {
 		audioManager = new AudioManager();
 		rnd = new Random();
@@ -64,20 +46,10 @@ public class MusicManager {
 		currentMusic = null;
 	}
 
-	/**
-	 * Adds the music to shuffle list.
-	 *
-	 * @param music the music
-	 */
 	public void addMusicToShuffleList(Music music) {
 		musicShuffleList.add(music);
 	}
 
-	/**
-	 * Play shuffle.
-	 *
-	 * @param volume the volume
-	 */
 	public void playShuffle(float volume) {
 		clearCurrentMusic();
 		clearLoops();
@@ -85,13 +57,6 @@ public class MusicManager {
 		startShuffling(volume);
 	}
 
-	/**
-	 * Play music.
-	 *
-	 * @param music the music
-	 * @param isLooping the is looping
-	 * @param volume the volume
-	 */
 	public void playMusic(Music music, boolean isLooping, float volume) {
 		clearCurrentMusic();
 		isShuffling = false;
@@ -100,27 +65,18 @@ public class MusicManager {
 		audioManager.playMusic(currentMusic, isLooping, shuffleVolume);
 	}
 
-	/**
-	 * Stop music.
-	 */
 	public void stopMusic() {
 		if (currentMusic != null) {
 			currentMusic.stop();
 		}
 	}
 
-	/**
-	 * Pause music.
-	 */
 	public void pauseMusic() {
 		if (currentMusic != null) {
 			currentMusic.pause();
 		}
 	}
 
-	/**
-	 * Clear loops.
-	 */
 	private void clearLoops() {
 		for (int i = 0; i < musicShuffleList.size(); i++) {
 			Music m = musicShuffleList.get(i);
@@ -128,9 +84,6 @@ public class MusicManager {
 		}
 	}
 
-	/**
-	 * Clear current music.
-	 */
 	private void clearCurrentMusic() {
 		if (currentMusic != null) {
 			currentMusic.stop();
@@ -138,11 +91,6 @@ public class MusicManager {
 		}
 	}
 
-	/**
-	 * Start shuffling.
-	 *
-	 * @param volume the volume
-	 */
 	private void startShuffling(float volume) {
 		if (musicShuffleList.size() > 0) {
 			int rndNumber = rnd.nextInt(musicShuffleList.size());
@@ -153,8 +101,8 @@ public class MusicManager {
 
 	/**
 	 * This method must be checked in render() or similar all the time, for
-	 * shuffle list.
-	 */
+	 * shuffle list
+	 * */
 	public void checkShuffleMusicFinished() {
 		if (isShuffling) {
 			if (currentMusic != null) {
@@ -165,29 +113,14 @@ public class MusicManager {
 		}
 	}
 
-	/**
-	 * Gets the music shuffle list.
-	 *
-	 * @return the music shuffle list
-	 */
 	public ArrayList<Music> getMusicShuffleList() {
 		return musicShuffleList;
 	}
 
-	/**
-	 * Gets the audio manager.
-	 *
-	 * @return the audio manager
-	 */
 	public AudioManager getAudioManager() {
 		return audioManager;
 	}
 
-	/**
-	 * Gets the current music.
-	 *
-	 * @return the current music
-	 */
 	public Music getCurrentMusic() {
 		return currentMusic;
 	}

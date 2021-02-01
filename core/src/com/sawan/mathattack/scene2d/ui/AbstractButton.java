@@ -33,79 +33,34 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.sawan.mathattack.settings.AppSettings;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class AbstractButton.
- */
 public abstract class AbstractButton extends Button {
 	// Locked (Not mandatory)
-	/** The is lock active. */
 	protected boolean isLockActive = false;
-	
-	/** The texture locked. */
 	protected TextureRegion textureLocked;
 
 	// Text (Not mandatory)
-	/** The is text active. */
 	protected boolean isTextActive = false;
-	
-	/** The text pos x. */
 	protected float textPosX = 0.0f;
-	
-	/** The text pos y. */
 	protected float textPosY = 0.0f;
-	
-	/** The text. */
 	protected String text = "";
-	
-	/** The bit map font. */
 	protected BitmapFont bitMapFont;
 
 	// External texture (Not mandatory)
-	/** The is external texture active. */
 	protected boolean isExternalTextureActive = false;
-	
-	/** The external texture pos x. */
 	protected float externalTexturePosX = 0.0f;
-	
-	/** The external texture pos y. */
 	protected float externalTexturePosY = 0.0f;
-	
-	/** The external texture size w. */
 	protected float externalTextureSizeW = 50.0f;
-	
-	/** The external texture size h. */
 	protected float externalTextureSizeH = 50.0f;
-	
-	/** The texture external. */
 	protected TextureRegion textureExternal;
 
 	//
-	/** The DIP active. */
 	private boolean DIPActive = false;
 
-	/**
-	 * Instantiates a new abstract button.
-	 *
-	 * @param bitMapFont the bit map font
-	 * @param up the up
-	 * @param down the down
-	 */
 	public AbstractButton(BitmapFont bitMapFont, Drawable up, Drawable down) {
 		super(up, down);
 		this.bitMapFont = bitMapFont;
 	}
 
-	/**
-	 * Instantiates a new abstract button.
-	 *
-	 * @param bitMapFont the bit map font
-	 * @param up the up
-	 * @param down the down
-	 * @param width the width
-	 * @param height the height
-	 * @param DIPActive the DIP active
-	 */
 	public AbstractButton(BitmapFont bitMapFont, Drawable up, Drawable down,
 			float width, float height, boolean DIPActive) {
 		super(up, down);
@@ -121,9 +76,6 @@ public abstract class AbstractButton extends Button {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see com.badlogic.gdx.scenes.scene2d.ui.Table#hit(float, float, boolean)
-	 */
 	@Override
 	public Actor hit(float x, float y, boolean touchable) {
 		// return super.hit(x, y, touchable);
@@ -138,40 +90,37 @@ public abstract class AbstractButton extends Button {
 	}
 
 	/**
-	 * Get if the button lock active.
-	 *
-	 * @return true, if is lock active
-	 */
+	 * Get if the button lock active
+	 * */
 	public boolean isLockActive() {
 		return isLockActive;
 	}
 
 	/**
 	 * Set the lock, it overrides the hit method, so it wont detect hits, also
-	 * if it is active, lock texture will be drawn.
-	 *
-	 * @param isLockActive the new lock active
+	 * if it is active, lock texture will be drawn
+	 * 
 	 * @see hit()
-	 */
+	 * */
 	public void setLockActive(boolean isLockActive) {
 		this.isLockActive = isLockActive;
 	}
 
 	/**
-	 * Get lock texture.
-	 *
-	 * @return the texture locked
-	 */
+	 * Get lock texture
+	 * */
 	public TextureRegion getTextureLocked() {
 		return textureLocked;
 	}
 
 	/**
-	 * Set lock texture.
-	 *
-	 * @param textureLocked            the lock texture to draw
-	 * @param isLockActive            to enable lock or not
-	 */
+	 * Set lock texture
+	 * 
+	 * @param textureLocked
+	 *            the lock texture to draw
+	 * @param isLockActive
+	 *            to enable lock or not
+	 * */
 	public void setTextureLocked(TextureRegion textureLocked,
 			boolean isLockActive) {
 		this.textureLocked = textureLocked;
@@ -179,37 +128,33 @@ public abstract class AbstractButton extends Button {
 	}
 
 	/**
-	 * Get if text active.
-	 *
-	 * @return true, if is text active
-	 */
+	 * Get if text active
+	 * */
 	public boolean isTextActive() {
 		return isTextActive;
 	}
 
 	/**
-	 * Set the text active to be drawn.
-	 *
-	 * @param isTextActive the new text active
+	 * Set the text active to be drawn
 	 */
 	public void setTextActive(boolean isTextActive) {
 		this.isTextActive = isTextActive;
 	}
 
 	/**
-	 * Get text.
-	 *
-	 * @return the text
+	 * Get text
 	 */
 	public String getText() {
 		return text;
 	}
 
 	/**
-	 * Set text (first initiation), later to change text use setTextChange.
-	 *
-	 * @param text            the text to be written
-	 * @param isTextActive            to write/draw the text or not
+	 * Set text (first initiation), later to change text use setTextChange
+	 * 
+	 * @param text
+	 *            the text to be written
+	 * @param isTextActive
+	 *            to write/draw the text or not
 	 * @see setTextChange
 	 */
 	public void setText(String text, boolean isTextActive) {
@@ -218,19 +163,14 @@ public abstract class AbstractButton extends Button {
 	}
 
 	/**
-	 * Set the new text.
-	 *
-	 * @param newText the new text change
+	 * Set the new text
 	 */
 	public void setTextChange(String newText) {
 		this.text = newText;
 	}
 
 	/**
-	 * Set text position of text (it adds to original button positions' x and y).
-	 *
-	 * @param x the x
-	 * @param y the y
+	 * Set text position of text (it adds to original button positions' x and y)
 	 */
 	public void setTextPosXY(float x, float y) {
 		textPosX = x;
@@ -243,18 +183,14 @@ public abstract class AbstractButton extends Button {
 	}
 
 	/**
-	 * Get the font.
-	 *
-	 * @return the bit map font
+	 * Get the font
 	 */
 	public BitmapFont getBitMapFont() {
 		return bitMapFont;
 	}
 
 	/**
-	 * Set the font.
-	 *
-	 * @param bitMapFont the new bit map font
+	 * Set the font
 	 */
 	public void setBitMapFont(BitmapFont bitMapFont) {
 		this.bitMapFont = bitMapFont;
@@ -265,27 +201,21 @@ public abstract class AbstractButton extends Button {
 	}
 
 	/**
-	 * Is external texture active or not.
-	 *
-	 * @return true, if is external texture active
+	 * Is external texture active or not
 	 */
 	public boolean isExternalTextureActive() {
 		return isExternalTextureActive;
 	}
 
 	/**
-	 * Set external texture active to be drawn.
-	 *
-	 * @param isExternalTextureActive the new external texture active
+	 * Set external texture active to be drawn
 	 */
 	public void setExternalTextureActive(boolean isExternalTextureActive) {
 		this.isExternalTextureActive = isExternalTextureActive;
 	}
 
 	/**
-	 * Ger external texture.
-	 *
-	 * @return the texture external
+	 * Ger external texture
 	 */
 	public TextureRegion getTextureExternal() {
 		return textureExternal;
@@ -298,9 +228,6 @@ public abstract class AbstractButton extends Button {
 	 * EXAMPLE<br>
 	 * A menu button and there is a mini coin texture over the button in the
 	 * right side
-	 *
-	 * @param textureExternal the texture external
-	 * @param isExternalTextureActive the is external texture active
 	 */
 	public void setTextureExternal(TextureRegion textureExternal,
 			boolean isExternalTextureActive) {
@@ -309,10 +236,7 @@ public abstract class AbstractButton extends Button {
 	}
 
 	/**
-	 * Set external texture position.
-	 *
-	 * @param x the x
-	 * @param y the y
+	 * Set external texture position
 	 */
 	public void setTextureExternalPosXY(float x, float y) {
 		externalTexturePosX = x;
@@ -325,10 +249,7 @@ public abstract class AbstractButton extends Button {
 	}
 
 	/**
-	 * Set external texture size.
-	 *
-	 * @param width the width
-	 * @param height the height
+	 * Set external texture size
 	 */
 	public void setTextureExternalSize(float width, float height) {
 		externalTextureSizeW = width;
@@ -340,20 +261,10 @@ public abstract class AbstractButton extends Button {
 		}
 	}
 
-	/**
-	 * Checks if is DIP active.
-	 *
-	 * @return true, if is DIP active
-	 */
 	public boolean isDIPActive() {
 		return DIPActive;
 	}
 
-	/**
-	 * Sets the DIP active.
-	 *
-	 * @param dIPActive the new DIP active
-	 */
 	public void setDIPActive(boolean dIPActive) {
 		DIPActive = dIPActive;
 	}

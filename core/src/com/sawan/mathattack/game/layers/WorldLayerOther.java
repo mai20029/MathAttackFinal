@@ -35,47 +35,25 @@ import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
 import com.sawan.mathattack.asset.UIAssets;
 import com.sawan.mathattack.buttons.GameButton;
-import com.sawan.mathattack.constants.MAConstants;
 import com.sawan.mathattack.game.managers.MAGameManager;
-import com.sawan.mathattack.game_screens.levels.MALevelScreen;
 import com.sawan.mathattack.math.Addition;
-import com.sawan.mathattack.math.IQuestion;
-import com.sawan.mathattack.math.Multiplication;
 import com.sawan.mathattack.math.QuestionsSettings;
 import com.sawan.mathattack.math.QuestionsUtils;
-import com.sawan.mathattack.math.Subtraction;
 import com.sawan.mathattack.scene2d.AbstractWorldScene2d;
 import com.sawan.mathattack.scene2d.ui.MenuCreator;
 import com.sawan.mathattack.scene2d.ui.Text;
 import com.sawan.mathattack.settings.AppSettings;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class WorldLayerOther.
- *
  * @author Itop1
+ *
  */
 public class WorldLayerOther extends AbstractWorldScene2d {
-	
-	/** The game manager. */
 	public MAGameManager gameManager;
-	
-	/** The user_answer. */
 	public int user_answer;
-	
-	/** The quiz_table. */
 	public Table quiz_table;
 
 	
-	/**
-	 * Instantiates a new world layer other.
-	 *
-	 * @param gameManager the game manager
-	 * @param posX the pos x
-	 * @param posY the pos y
-	 * @param worldWidth the world width
-	 * @param worldHeight the world height
-	 */
 	public WorldLayerOther(MAGameManager gameManager, float posX, float posY, float worldWidth, float worldHeight) {
 		super(posX, posY, worldWidth, worldHeight);
 		this.gameManager =  gameManager;
@@ -83,30 +61,16 @@ public class WorldLayerOther extends AbstractWorldScene2d {
 		setUpMathQuiz();
 	}
 	
-	/**
-	 * Sets the up math quiz.
-	 */
 	public void setUpMathQuiz() {
 		quiz_table = MenuCreator.createTable(false, UIAssets.getSkin());
 		//quiz_table.debug();
-		
-		final IQuestion question_type;
-		//final Addition question_type = new Addition(QuestionsUtils.randomNumber(QuestionsSettings.MIN_QUIZ_VALUE, QuestionsSettings.MAX_QUIZ_VALUE), QuestionsUtils.randomNumber(QuestionsSettings.MIN_QUIZ_VALUE, QuestionsSettings.MAX_QUIZ_VALUE));
-		if (MALevelScreen.chapter == MAConstants.CHAPTER_ADDITION) {
-			question_type = new Addition(QuestionsUtils.randomNumber(QuestionsSettings.MIN_QUIZ_VALUE, QuestionsSettings.MAX_QUIZ_VALUE), QuestionsUtils.randomNumber(QuestionsSettings.MIN_QUIZ_VALUE, QuestionsSettings.MAX_QUIZ_VALUE));
-		} else if (MALevelScreen.chapter == MAConstants.CHAPTER_SUBTRACTION) {
-			question_type = new Subtraction(QuestionsUtils.randomNumber(QuestionsSettings.MIN_QUIZ_VALUE, QuestionsSettings.MAX_QUIZ_VALUE), QuestionsUtils.randomNumber(QuestionsSettings.MIN_QUIZ_VALUE, QuestionsSettings.MAX_QUIZ_VALUE));
-		} else if (MALevelScreen.chapter == MAConstants.CHAPTER_MULTIPLICATION) {
-			question_type = new Multiplication(QuestionsUtils.randomNumber(0, 11), QuestionsUtils.randomNumber(1, 9));
-		} else {
-			question_type = null;
-		}
+		final Addition addition = new Addition(QuestionsUtils.randomNumber(QuestionsSettings.MIN_QUIZ_VALUE, QuestionsSettings.MAX_QUIZ_VALUE), QuestionsUtils.randomNumber(QuestionsSettings.MIN_QUIZ_VALUE, QuestionsSettings.MAX_QUIZ_VALUE));
 		
 		//LabelStyle style = new LabelStyle(UIAssets.cartwheel_font, null);
 		
 		//Label question = new Label("", style);
 		Text question = new Text(UIAssets.cartwheel_font, 90f * 3, 20f, true);
-		question.setText(question_type.getQuestion());
+		question.setText(addition.getQuestion());
 		//question.setFontScale(1.25f);
 		question.getBitMapFont().setScale(question.getWidth(), question.getHeight());
 		
@@ -123,7 +87,7 @@ public class WorldLayerOther extends AbstractWorldScene2d {
 		quiz_table.setBackground(background_table);
 		quiz_table.add(question).padBottom(50f * AppSettings.getWorldPositionYRatio()).padLeft(67.5f * AppSettings.getWorldPositionXRatio()).colspan(3);
 		quiz_table.row();
-		for (int i = 0; i < question_type.getAnswers().length; i++) {
+		for (int i = 0; i < addition.getAnswers().length; i++) {
 			/**Label answer = new Label("", UIAssets.getSkin());
 			answer.setText(Integer.toString(addition.getAnswers()[i]));
 			
@@ -143,14 +107,14 @@ public class WorldLayerOther extends AbstractWorldScene2d {
 			Gdx.app.log("Button_h", Float.toString(answer_button.getHeight()));
 			**/
 			
-			answer_button.setAnswer(question_type.getAnswers()[i], UIAssets.cartwheel_font);
+			answer_button.setAnswer(addition.getAnswers()[i], UIAssets.cartwheel_font);
 			
 			answer_button.addListener(new ActorGestureListener() {
 				@Override
 				public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 					super.touchUp(event, x, y, pointer, button);
 					user_answer = answer_button.getAnswer();
-					if (user_answer == question_type.getCorrect_answer()) {
+					if (user_answer == addition.getCorrect_answer()) {
 						System.out.println("Correcto!");
 						hideTable();
 						gameManager.worldLayer_actors.addBullet();
@@ -181,9 +145,6 @@ public class WorldLayerOther extends AbstractWorldScene2d {
 		addActor(quiz_table);
 	}
 	
-	/**
-	 * Hide table.
-	 */
 	public void hideTable() {
 		quiz_table.addAction(Actions.moveTo(gameManager.getStage().getWidth() / 2 - (quiz_table.getWidth() / 2), gameManager.getStage().getHeight(), 0.5f));
 	}
