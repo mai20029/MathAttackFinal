@@ -26,14 +26,15 @@
 package com.sawan.mathattack;
 
 import com.sawan.mathattack.asset.Backgrounds;
-import com.sawan.mathattack.asset.MonsterAssets;
+import com.sawan.mathattack.asset.ChaptersAssets;
 import com.sawan.mathattack.asset.GameAssets;
 import com.sawan.mathattack.asset.HeroAssests;
+import com.sawan.mathattack.asset.MonsterAssets;
 import com.sawan.mathattack.asset.UIAssets;
 import com.sawan.mathattack.asset.levels.MALevelAssets;
 import com.sawan.mathattack.game.AbstractGame;
-import com.sawan.mathattack.game_screens.credits.MACreditsScreen;
-import com.sawan.mathattack.game_screens.levels.MALevelScreen;
+import com.sawan.mathattack.game_screens.chapters.MAChapterScreen;
+import com.sawan.mathattack.game_screens.main.MAMainMenuScreen;
 import com.sawan.mathattack.managers.FileManager;
 import com.sawan.mathattack.managers.FileManager.FileType;
 import com.sawan.mathattack.managers.SettingsManager;
@@ -44,7 +45,7 @@ public class MainStarter extends AbstractGame {
 	@Override
 	public void create() {
         super.create();
-		setScreen(new MALevelScreen(this, "Main Menu"));
+		setScreen(new MAChapterScreen(this, "Main Menu"));
 	}
 	
 	@Override
@@ -67,6 +68,7 @@ public class MainStarter extends AbstractGame {
 		HeroAssests.loadAll();
 		MonsterAssets.loadAll();
 		GameAssets.loadAll();
+		ChaptersAssets.loadAll();
 	}
 
 	@Override
