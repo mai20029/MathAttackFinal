@@ -30,9 +30,12 @@ import java.util.Random;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
+import com.badlogic.gdx.utils.Timer;
+import com.badlogic.gdx.utils.Timer.Task;
 import com.sawan.mathattack.asset.UIAssets;
 import com.sawan.mathattack.buttons.MathAttackButton;
 import com.sawan.mathattack.effects.EffectCreator;
+import com.sawan.mathattack.game_screens.credits.MACreditsScreen;
 import com.sawan.mathattack.game_screens.levels.MALevelScreen;
 import com.sawan.mathattack.game_screens.main.MAMainMenuScreen;
 import com.sawan.mathattack.scene2d.ui.TableModel;
@@ -83,12 +86,18 @@ public class MAMainMenuButtons {
 				menuScreen.button_play.clearActions();
 				EffectCreator.create_SC_SHK_BTN(menuScreen.button_play,
                         1.3f, 1.3f, 5f, 0, 0.05f, null, false);
-				menuScreen.getGame().setScreen(new MALevelScreen(menuScreen.getGame(), "Level Selection"));
+				Timer.schedule(new Task() {
+					
+					@Override
+					public void run() {
+						menuScreen.getGame().setScreen(new MALevelScreen(menuScreen.getGame(), "Level Selection"));
+					}
+				}, 0.5f);
 			}
 		});
 		
 		//--------- Button Settings ---------//
-		menuScreen.button_settings = new MathAttackButton(BUTTON_W, BUTTON_H, rnd, true);
+		/**menuScreen.button_settings = new MathAttackButton(BUTTON_W, BUTTON_H, rnd, true);
 		menuScreen.button_settings.setTextureRegion(UIAssets.image_main_button_settings, true);
 		menuScreen.button_settings.setOrigin(menuScreen.button_settings.getWidth() / 2.0f, menuScreen.button_settings.getHeight() / 2.0f);
 		menuScreen.button_settings.addListener(new ActorGestureListener() {
@@ -101,9 +110,16 @@ public class MAMainMenuButtons {
 				menuScreen.button_settings.clearActions();
 				EffectCreator.create_SC_SHK_BTN(menuScreen.button_settings,
                         1.3f, 1.3f, 5f, 0, 0.05f, null, false);
+				Timer.schedule(new Task() {
+					
+					@Override
+					public void run() {
+						
+					}
+				}, 0.5f);
 			}
 		});
-		
+		**/
 		
 		//--------- Button Credits ---------//
 		menuScreen.button_credits = new MathAttackButton(BUTTON_W, BUTTON_H, rnd, true);
@@ -119,21 +135,28 @@ public class MAMainMenuButtons {
 				menuScreen.button_credits.clearActions();
 				EffectCreator.create_SC_SHK_BTN(menuScreen.button_credits,
                         1.3f, 1.3f, 5f, 0, 0.05f, null, false);
+				Timer.schedule(new Task() {
+					
+					@Override
+					public void run() {
+						menuScreen.getGame().setScreen(new MACreditsScreen(menuScreen.getGame(), "Level Selection"));
+					}
+				}, 0.5f);
 			}
 		});
 		
 		
 		// Scale the buttons to 0, so they appear after the splash screen
 		menuScreen.button_play.setScale(0f);
-		menuScreen.button_settings.setScale(0f);
+		//menuScreen.button_settings.setScale(0f);
 		menuScreen.button_credits.setScale(0f);
 		
 		// Add to the table
 		menuScreen.menu_table.add(menuScreen.button_play).pad(10);
 		menuScreen.menu_table.row();
 		
-		menuScreen.menu_table.add(menuScreen.button_settings).pad(10);
-		menuScreen.menu_table.row();
+		//menuScreen.menu_table.add(menuScreen.button_settings).pad(10);
+		//menuScreen.menu_table.row();
 		
 		menuScreen.menu_table.add(menuScreen.button_credits).pad(10);
 		
@@ -157,7 +180,7 @@ public class MAMainMenuButtons {
 				1.3f, 0.8f, null, false);
 		//
 		menu_screen.button_play.setTouchable(Touchable.enabled);
-		menu_screen.button_settings.setTouchable(Touchable.enabled);
+		//menu_screen.button_settings.setTouchable(Touchable.enabled);
 		menu_screen.button_credits.setTouchable(Touchable.enabled);
 	}
 
